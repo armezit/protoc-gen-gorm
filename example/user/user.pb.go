@@ -7,8 +7,8 @@
 package user
 
 import (
-	resource "github.com/infobloxopen/atlas-app-toolkit/atlas/resource"
-	_ "github.com/infobloxopen/protoc-gen-gorm/options"
+	resource "github.com/armezit/atlas-app-toolkit/rpc/resource"
+	_ "github.com/armezit/protoc-gen-gorm/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
