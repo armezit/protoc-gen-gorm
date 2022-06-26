@@ -31,16 +31,22 @@ The protobuf compiler (protoc) is required.
 
 Get the golang protobuf code generator:
 
+Before Go 1.17
 ```
 go get -u github.com/golang/protobuf/protoc-gen-go
 ```
+Starting from Go 1.17
+```
+go install github.com/golang/protobuf/protoc-gen-go
+```
+
 
 #### 3. Vendored Dependencies
 
-Retrieve and install the vendored dependencies for this project with [dep](https://github.com/golang/dep):
+Retrieve and install the vendored dependencies for this project with go mod:
 
 ```
-dep ensure
+go mod tidy
 ```
 
 ### Installation
@@ -101,10 +107,10 @@ using the service level option `option (gorm.server).txn_middleware = true`.
 ### Examples
 
 Example .proto files and generated .pb.gorm.go files are included in the
-'example' directory. The [user](user/user.proto) file contains model examples
-from [GORM](http://gorm.io/docs/) documentation, the [feature_demo/demo_types](feature_demo/demo_types.proto)
+'example' directory. The [user](example/user/user.proto) file contains model examples
+from [GORM](http://gorm.io/docs/) documentation, the [feature_demo/demo_types](example/feature_demo/demo_types.proto)
 demonstrates the type handling and multi_account functions, and the
-[feature_demo/demo_service](feature_demo/demo_service.proto) shows the
+[feature_demo/demo_service](example/feature_demo/demo_service.proto) shows the
 service autogeneration.
 
 Running `make example` will recompile all these test proto files, if you want
@@ -115,6 +121,7 @@ to test the effects of changing the options and fields.
 Within the proto files, the following types are supported:
 - standard primitive types `uint32`, `uint64`, `int32`, `int64`, `float`,
   `double`, `bool`, `string` map to the same type at ORM level
+- 
 - [google wrapper types](https://github.com/golang/protobuf/blob/master/ptypes/wrappers/wrappers.proto)
  `google.protobuf.StringValue`, `.BoolValue`, `.UInt32Value`, `.FloatValue`, etc.
  map to pointers of the internal type at the ORM level, e.g.
