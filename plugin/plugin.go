@@ -2077,7 +2077,7 @@ func (b *ORMBuilder) handleChildAssociationsByName(message *protogen.Message, fi
 			action = fmt.Sprintf("%s()", assocHandler)
 		}
 
-		g.P(`if err = db.Model(&ormObj).Association("`, fieldName, `").`, action, `.Error; err != nil {`)
+		g.P(`if err = db.Model(&ormObj).Association("`, fieldName, `").`, action, `; err != nil {`)
 		g.P(`return nil, err`)
 		g.P(`}`)
 		g.P(`ormObj.`, fieldName, ` = nil`)
